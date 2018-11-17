@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const massive = require('massive');
 const session = require('express-session');
+const controller = require('./controller');
 
 const { SERVER_PORT, DATABASE_STRING, SESSION_SECRET } = process.env;
 
@@ -24,6 +25,11 @@ massive(DATABASE_STRING)
   .catch(err => {
     console.log('Database connection error', err);
   })
+
+//Endpoints
+app.post('/api/auth/register', controller.register);
+app.post('/api/auth/login', controller.login);
+app.get('/api/auth/me', controller.userInfo);
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server listening on port ${SERVER_PORT}`)
