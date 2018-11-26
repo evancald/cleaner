@@ -34,5 +34,11 @@ module.exports = {
     },
     userInfo: (req, res) => {
       res.status(200).send(req.session.user);
+    },
+    getAllListings: (req, res) => {
+      req.app.get('db').get_all_listings()
+      .then((listings) => {
+        res.status(200).send(listings);
+      })
     }
   }

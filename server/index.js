@@ -27,9 +27,14 @@ massive(DATABASE_STRING)
   })
 
 //Endpoints
+
+//Auth
 app.post('/api/auth/register', controller.register);
 app.post('/api/auth/login', controller.login);
 app.get('/api/auth/me', controller.userInfo);
+
+//Content
+app.get('/api/listings/all', controller.getAllListings);
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server listening on port ${SERVER_PORT}`)
