@@ -6,6 +6,7 @@ const initialState = {
 const UPDATE_USERNAME = 'UPDATE_USERNAME';
 const UPDATE_PROFILEPIC = 'UPDATE_PROFILEPIC';
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
+const RESET_STATE = 'RESET_STATE';
 
 function reducer(state = initialState, action) {
   switch(action.type) {
@@ -15,6 +16,8 @@ function reducer(state = initialState, action) {
       return Object.assign({}, state, { password: action.payload });
     case UPDATE_PROFILEPIC:
       return Object.assign({}, state, { profilePicture: action.payload });
+    case RESET_STATE:
+      return action.payload;
     default:
       return state;
   }
@@ -38,6 +41,13 @@ export function updatePassword(password) {
   return {
     type: UPDATE_PASSWORD,
     payload: password
+  }
+}
+
+export function resetState() {
+  return {
+    type: RESET_STATE,
+    payload: initialState
   }
 }
 

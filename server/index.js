@@ -32,6 +32,7 @@ massive(DATABASE_STRING)
 app.post('/api/auth/register', controller.register);
 app.post('/api/auth/login', controller.login);
 app.get('/api/auth/me', controller.userInfo);
+app.post('/api/auth/logout', controller.logout);
 
 //Content
 app.get('/api/listings/all', controller.getAllListings);

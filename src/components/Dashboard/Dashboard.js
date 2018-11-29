@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Dashboard.css';
 import axios from 'axios';
 
 class Dashboard extends Component {
@@ -19,17 +20,22 @@ class Dashboard extends Component {
   render() {
     const listings = this.state.listings.map((listing, i) => {
       return (
-        <div key={i}>
+        <div className="post" key={i}>
           <h3>{listing.title}</h3>
           <span> by {listing.username}</span>
           <br />
           <span>Price: ${listing.price}</span>
+          <br />
+          <span>Near {listing.location}</span>
         </div>
       )
     })
     return (
-      <div>
-        {listings}
+      <div className="dashboard-container">
+
+        <div className="posts-container">
+          {listings}
+        </div>
       </div>
     )
   }
