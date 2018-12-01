@@ -29,6 +29,10 @@ class Nav extends Component {
     })
   }
 
+  createNewListing = () => {
+    this.props.history.push('/new');
+  }
+
   render() {
     if (this.props.location.pathname !== '/' && this.props.location.pathname !== '/register' ) {
       return (
@@ -37,6 +41,7 @@ class Nav extends Component {
           <div>{this.props.username}</div>
           <button>Job Listings</button>
           <button>Service Providers</button>
+          <button onClick={this.createNewListing}>New Listing</button>
           <button onClick={this.logout}>Logout</button>
         </div>
       )

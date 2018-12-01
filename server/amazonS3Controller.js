@@ -3,14 +3,17 @@ const aws = require('aws-sdk');
 
 aws.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_KEY
+  region: 'us-east-2',
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  signatureVersion: 'v4'
 })
 
 const sign = (filename, filetype) => {
   let s3 = new aws.S3();
+  
 
   let params = {
-    Bucket: 'cleaner-profile-pictures',
+    Bucket: 'cleaner-test',
     Key: filename,
     Expires: 60,
     ContentType: filetype
