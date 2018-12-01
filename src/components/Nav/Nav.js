@@ -30,7 +30,7 @@ class Nav extends Component {
   }
 
   createNewListing = () => {
-    this.props.history.push('/new');
+    this.props.history.push('/new/StepOne');
   }
 
   render() {

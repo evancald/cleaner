@@ -6,7 +6,7 @@ import { updateType } from '../../../ducks/reducer';
 class StepOne extends Component {
 
   next = () => {
-    this.props.history.push('/new/stepTwo');
+    this.props.history.push('/new/StepTwo');
   }
 
   render() {

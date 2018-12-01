@@ -1,0 +1,8 @@
+.form-container {
+  position: fixed;
+  top: 0px;
+  left: 120px;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+}
