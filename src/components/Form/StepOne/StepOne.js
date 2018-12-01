@@ -5,23 +5,21 @@ import { updateType } from '../../../ducks/reducer';
 
 class StepOne extends Component {
 
-  next = () => {
+  next = (type) => {
+    const { updateType } = this.props;
+    updateType(type);
     this.props.history.push('/new/StepTwo');
   }
 
   render() {
-    const { updateType } = this.props;
     return (
       <div className="form-container">
         <div>What type of listing are you making?</div>
         <div>
-          <button onClick={() => updateType('job')}>Help Wanted</button>
+          <button onClick={() => this.next('job')}>Help Wanted</button>
         </div>
         <div>
-          <button onClick={() => updateType('service')}>Service Provided</button>
-        </div>
-        <div>
-          <button onClick={this.next}>Next</button>
+          <button onClick={() => this.next('service')}>Service Provided</button>
         </div>
       </div>
     )

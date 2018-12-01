@@ -5,6 +5,10 @@ import Dashboard from './components/Dashboard/Dashboard';
 //New Listing Steps
 import StepOne from './components/Form/StepOne/StepOne';
 import StepTwo from './components/Form/StepTwo/StepTwo';
+import StepThree from './components/Form/StepThree/StepThree';
+import Review from './components/Form/Review/Review';
+
+
 import Post from './components/Post/Post';
 import Register from './components/Register/Register';
 
@@ -13,8 +17,12 @@ export default (
     <Route exact path="/" component={ Auth } />
     <Route path="/register" component= { Register } />
     <Route path="/dashboard" component={ Dashboard } />
+
     <Route path="/new/StepOne" component= { StepOne } />
     <Route path="/new/StepTwo" component={ StepTwo } />
+    <Route path="/new/StepThree" component={ StepThree } />
+    <Route path="/new/review" component={ Review } />
+
     <Route path="/post/:postid" component={ Post } />
   </Switch>
 )

@@ -18,8 +18,11 @@ class StepTwo extends Component {
     return (
       <div className="form-container">
         <div>
+          Title:
           <input type="text" onChange={(e) => updateTitle(e.target.value)} value={this.props.title} placeholder="Your listing title" />
+          Description:
           <input type="text" onChange={(e) => updateDescription(e.target.value)} value={this.props.description} placeholder="Describe your listing. Details will make your listing more popular" />
+          Price:
           <input type="number" onChange={(e) => updatePrice(e.target.value)} value={this.props.price} placeholder="Price in $" />
         </div>
         <div>

@@ -26,7 +26,7 @@ class Dashboard extends Component {
           <br />
           <span>Price: ${listing.price}</span>
           <br />
-          <span>Near {listing.location}</span>
+          <span>Near {listing.city}</span>
         </div>
       )
     })

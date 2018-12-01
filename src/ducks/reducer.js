@@ -10,7 +10,7 @@ const initialState = {
   price: 0,
   address: '',
   city: '',
-  state: '',
+  usState: '',
   zip: ''
 
 }
@@ -23,6 +23,10 @@ const UPDATE_TYPE = 'UPDATE_TYPE';
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
 const UPDATE_PRICE = 'UPDATE_PRICE';
+const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
+const UPDATE_CITY = 'UPDATE_CITY';
+const UPDATE_USSTATE = 'UPDATE_USSTATE';
+const UPDATE_ZIP = 'UPDATE_ZIP';
 
 function reducer(state = initialState, action) {
   switch(action.type) {
@@ -40,6 +44,14 @@ function reducer(state = initialState, action) {
       return Object.assign({}, state, { description: action.payload });
     case UPDATE_PRICE:
       return Object.assign({}, state, { price: action.payload });
+    case UPDATE_ADDRESS:
+      return Object.assign({}, state, { address: action.payload });
+    case UPDATE_CITY:
+      return Object.assign({}, state, { city: action.payload });
+    case UPDATE_USSTATE:
+      return Object.assign({}, state, { usState: action.payload });
+    case UPDATE_ZIP:
+      return Object.assign({}, state, { zip: action.payload });
     case RESET_STATE:
       return action.payload;
     default:
@@ -93,6 +105,34 @@ export function updatePrice(price) {
   return {
     type: UPDATE_PRICE,
     payload: price
+  }
+}
+
+export function updateAddress(address) {
+  return {
+    type: UPDATE_ADDRESS,
+    payload: address
+  }
+}
+
+export function updateCity(city) {
+  return {
+    type: UPDATE_CITY,
+    payload: city
+  }
+}
+
+export function updateUsState(usState) {
+  return {
+    type: UPDATE_USSTATE,
+    payload: usState
+  }
+}
+
+export function updateZip(zip) {
+  return {
+    type: UPDATE_ZIP,
+    payload: zip
   }
 }
 

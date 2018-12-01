@@ -41,6 +41,9 @@ app.get('/api/listings/all', controller.getAllListings);
 //S3
 app.post('/api/getSignedUrl', amazonS3Controller.getSignedUrl);
 
+//Create Listing
+app.post('/api/newListing', controller.newListing);
+
 app.listen(SERVER_PORT, () => {
   console.log(`Server listening on port ${SERVER_PORT}`)
 });
