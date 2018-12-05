@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Review.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { clearInputs } from '../../../ducks/reducer';
 
 
 class Review extends Component {
@@ -23,6 +24,8 @@ class Review extends Component {
       zip
     })
     .then(() => {
+      const { clearInputs } = this.props;
+      clearInputs();
       this.props.history.push('/dashboard');
     })
   }
@@ -63,4 +66,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Review);
+export default connect(mapStateToProps, { clearInputs })(Review);

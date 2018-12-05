@@ -1,68 +1,78 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
-
-const uploadImage = (file) => {
-  return axios.post('/api/getSignedUrl', {
-    filename: file.name,
-    filetype: file.type
-  })
-  .then(res => {
-    let options = {
-      headers: {
-        'Content-Type': file.type
-      }
-    }
-    return axios.put(res.data.url, file, options)
-    .then(res => {
-      console.log('Image uploaded to:', res.config.url.match(/.*\?/)[0].slice(0,-1));
-      return res.config.url.match(/.*\?/)[0].slice(0,-1);
-    })
-  })
-}
+import { connect } from 'react-redux';
+import { updateUsername, updatePassword, updateProfilePicture } from '../../ducks/reducer';
 
 class Register extends Component {
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: '',
-      profilePicture: null,
-    }
+
+  handleDrop = files => {
+    const uploaders = files.map(file => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("tags", `codeinfuse, medium, gist`);
+      formData.append("upload_preset", "iqofzohb");
+      formData.append("api_key", "184123142513397");
+      formData.append("timestamp", (Date.now() / 1000) | 0);
+
+      return axios.post("https://api.cloudinary.com/v1_1/evancald/image/upload", formData, {
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+      }).then(response => {
+        const { updateProfilePicture } = this.props;
+        updateProfilePicture(response.data.secure_url);
+      })
+    });
+    axios.all(uploaders).then(() => {
+      window.alert("upload successful! Click 'Register' to confirm your registration");
+    })
   }
 
-  componentDidMount() {
-  }
-
-  handleUsernameChange = (username) => {
-    this.setState({username});
-  }
-
-  handlePasswordChange = (password) => {
-    this.setState({password});
-  }
-
-  onDrop(accepted) {
-    uploadImage(accepted[0])
-    .then(url => {
-      console.log('OnDropped to:', url);
-      this.setState({profilePicture: url});
+  register = () => {
+    const { username, password, profilePicture } = this.props;
+    axios.post('/api/auth/register', {
+      username,
+      password,
+      profilePicture
+    }).then(() => {
+      window.alert('Thanks for joining Cleaner! Please login using your new account');
+      this.props.history.push('/');
     })
   }
 
   render() {
+    const { updateUsername, updatePassword } = this.props;
+    const { username, password } = this.props;
     return (
       <div>
-        Desired Username: <input type="text" onChange={(e) => this.handleUsernameChange(e.target.value)} value={this.state.username} placeholder="Username" />
-        <br />
-        Password: <input type="password" onChange={(e) => this.handlePasswordChange(e.target.value)} value={this.state.password} placeholder="Password" />
-        <br />
-        <Dropzone onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}>
-          Drop your profile picture here!
-        </Dropzone>
+        <div>
+          Desired Username: <input type="text" onChange={(e) => updateUsername(e.target.value)} value={username} placeholder="Username" />
+          <br />
+          Password: <input type="password" onChange={(e) => updatePassword(e.target.value)} value={password} placeholder="Password" />
+          <br />
+          <Dropzone onDrop={ this.handleDrop } multiple accept="image/*" >
+            <p> 
+              Drop your profile picture here, or click to upload.
+            </p>
+          </Dropzone>
+        </div>
+        <div>
+          { this.props.profilePicture ? 
+          <div> 
+            <button onClick={this.register}>Register</button> 
+          </div> : null }
+        </div>
       </div>
     )
   }
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+  const { username, password, profilePicture } = state;
+  return {
+    username,
+    password,
+    profilePicture
+  }
+}
+
+export default connect(mapStateToProps, { updateUsername, updatePassword, updateProfilePicture })(Register);

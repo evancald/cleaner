@@ -3,12 +3,12 @@ const bcrypt = require('bcrypt-nodejs');
 module.exports = {
   //Auth
   register: (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, profilePicture } = req.body;
     bcrypt.hash(password, null, null, (err, hash) => {
       if (err) {
         return res.send('Something went wrong during hashing', err);
       }
-      req.app.get('db').register_user([username, hash])
+      req.app.get('db').register_user([username, hash, profilePicture])
         .then(() => {
           res.status(200).send('User registered successfully')
         })
@@ -48,11 +48,18 @@ module.exports = {
         res.status(200).send(listings);
       })
     },
+    //Get Post
+    getPost: (req, res) => {
+      const { postid } = req.params;
+      req.app.get('db').get_post([postid])
+      .then((post) => {
+        res.status(200).send(post);
+      })
+    },
     //New Listing
     newListing: (req, res) => {
       const { type, title, description, price, address, city, usState, zip,} = req.body;
-      const { id:author } = req.session.user;
-      console.log('Author:', author);
+      const { userid:author } = req.session.user;
       req.app.get('db').create_new_listing([author, type, title, description, price, address, city, usState, zip])
       .then(() => {
         res.status(200).send();

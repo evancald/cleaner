@@ -18,7 +18,6 @@ const initialState = {
 const UPDATE_USERNAME = 'UPDATE_USERNAME';
 const UPDATE_PROFILEPIC = 'UPDATE_PROFILEPIC';
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
-const RESET_STATE = 'RESET_STATE';
 const UPDATE_TYPE = 'UPDATE_TYPE';
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
@@ -27,6 +26,8 @@ const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
 const UPDATE_CITY = 'UPDATE_CITY';
 const UPDATE_USSTATE = 'UPDATE_USSTATE';
 const UPDATE_ZIP = 'UPDATE_ZIP';
+const CLEAR_INPUTS = 'CLEAR_INPUTS';
+const RESET_STATE = 'RESET_STATE';
 
 function reducer(state = initialState, action) {
   switch(action.type) {
@@ -52,6 +53,8 @@ function reducer(state = initialState, action) {
       return Object.assign({}, state, { usState: action.payload });
     case UPDATE_ZIP:
       return Object.assign({}, state, { zip: action.payload });
+    case CLEAR_INPUTS:
+      return Object.assign({}, state, action.payload);
     case RESET_STATE:
       return action.payload;
     default:
@@ -133,6 +136,22 @@ export function updateZip(zip) {
   return {
     type: UPDATE_ZIP,
     payload: zip
+  }
+}
+
+export function clearInputs() {
+  return {
+    type: CLEAR_INPUTS,
+    payload: {
+      type: null,
+      title: '',
+      description: '',
+      price: 0,
+      address: '',
+      city: '',
+      usState: '',
+      zip: ''
+    }
   }
 }
 

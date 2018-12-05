@@ -26,7 +26,7 @@ class StepThree extends Component {
           State:
           <input type="text" onChange={(e) => updateUsState(e.target.value)} value={usState}  placeholder="US State Abbreviation (for example, 'UT'" />
           Zip:
-          <input type="number" onChange={(e) => updateZip(e.target.value)} value={zip} placeholder="5-digit Zip Code" />
+          <input type="text" onChange={(e) => updateZip(e.target.value)} value={zip} placeholder="5-digit Zip Code" />
         </div>
         <div>
           <button onClick={this.previous}>Previous</button>

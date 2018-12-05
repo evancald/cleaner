@@ -39,8 +39,7 @@ class Nav extends Component {
         <div className="nav-container">
           <img src={this.props.profilePicture} alt="user avatar" height="100px" width="100px" />
           <div>{this.props.username}</div>
-          <button>Job Listings</button>
-          <button>Service Providers</button>
+          <button onClick={() => this.props.history.push('/dashboard')}>Dashboard</button>
           <button onClick={this.createNewListing}>New Listing</button>
           <button onClick={this.logout}>Logout</button>
         </div>

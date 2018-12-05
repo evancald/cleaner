@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const massive = require('massive');
 const session = require('express-session');
 const controller = require('./controller');
-const amazonS3Controller = require('./amazonS3Controller');
+const searchController = require('./searchController');
 
 const { SERVER_PORT, DATABASE_STRING, SESSION_SECRET } = process.env;
 
@@ -36,13 +36,16 @@ app.get('/api/auth/me', controller.userInfo);
 app.post('/api/auth/logout', controller.logout);
 
 //Content
+//All Posts
 app.get('/api/listings/all', controller.getAllListings);
-
-//S3
-app.post('/api/getSignedUrl', amazonS3Controller.getSignedUrl);
+//Single Post
+app.get('/api/listings/:postid', controller.getPost);
 
 //Create Listing
 app.post('/api/listings/new', controller.newListing);
+
+//Search Listings
+app.get('/api/listings/search', searchController.searchListings)
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server listening on port ${SERVER_PORT}`)
