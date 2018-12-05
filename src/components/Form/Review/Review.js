@@ -12,7 +12,7 @@ class Review extends Component {
 
   submit = () => {
     const { type, title, description, price, address, city, usState, zip } = this.props;
-    axios.post('/api/newListing', {
+    axios.post('/api/listings/new', {
       type,
       title,
       description,

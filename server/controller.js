@@ -51,7 +51,7 @@ module.exports = {
     //New Listing
     newListing: (req, res) => {
       const { type, title, description, price, address, city, usState, zip,} = req.body;
-      const { author } = req.session.user.id;
+      const { id:author } = req.session.user;
       console.log('Author:', author);
       req.app.get('db').create_new_listing([author, type, title, description, price, address, city, usState, zip])
       .then(() => {
