@@ -45,7 +45,7 @@ app.get('/api/listings/:postid', controller.getPost);
 app.post('/api/listings/new', controller.newListing);
 
 //Search Listings
-app.get('/api/listings/search', searchController.searchListings)
+app.get('/api/searchPosts', searchController.searchListings)
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server listening on port ${SERVER_PORT}`)

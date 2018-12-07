@@ -7,14 +7,27 @@ class Dashboard extends Component {
     super();
     this.state = {
       listings: [],
-      searchText: ''
+      searchText: '',
+      searchCity: ''
     }
   }
 
   componentDidMount() {
+    this.resetListings();
+  }
+
+  resetListings = () => {
     axios.get('/api/listings/all')
-    .then((response) => {
+    .then(response => {
       this.setState({ listings: response.data });
+    })
+  }
+
+  resetSearch = () => {
+    this.resetListings();
+    this.setState({
+      searchText: '',
+      searchCity: ''
     })
   }
 
@@ -22,8 +35,12 @@ class Dashboard extends Component {
     this.setState({searchText});
   }
 
+  updateSearchCity = (searchCity) => {
+    this.setState({searchCity});
+  }
+
   performSearch = () => {
-    axios.get(`/api/listings/search?searchText=${this.state.searchText}`)
+    axios.get(`/api/searchPosts?searchText=${this.state.searchText}&city=${this.state.searchCity}`)
     .then(response => {
       this.setState({ listings: response.data });
     })
@@ -46,9 +63,11 @@ class Dashboard extends Component {
       <div className="dashboard-container">
         
         <div className="search-bar">
-          <input type="text" onChange={(e) => this.updateSearchText(e.target.value)} value={this.state.searchText} placeholder="Search"></input>
+          <input type="text" onChange={(e) => this.updateSearchText(e.target.value)} value={this.state.searchText} placeholder="Keyword"></input>
+          <br />
+          <input type="text" onChange={(e) => this.updateSearchCity(e.target.value)} value={this.state.searchCity} placeholder="City"></input>
           <button onClick={() => this.performSearch()}>Search</button>
-          <button>Reset</button>
+          <button onClick={this.resetSearch}>Reset</button>
         </div>
 
         <div className="posts-container">
