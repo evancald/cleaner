@@ -1,1 +1,1 @@
-INSERT INTO posts (author, type, title, description, price, address, city, usstate, zip) VALUES ($1, $2, $3, $4, $5, $6, $7, $8 ,$9);
+INSERT INTO posts (author, type, title, description, price, address, city, usstate, zip, default_photo) VALUES ($1, $2, $3, $4, $5, $6, $7, $8 ,$9, $10) RETURNING id;

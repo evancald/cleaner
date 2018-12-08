@@ -6,7 +6,8 @@ class Post extends Component {
   constructor() {
     super();
     this.state = {
-      post: {}
+      post: {},
+      photos: []
     }
   }
 
@@ -14,7 +15,11 @@ class Post extends Component {
     const { postid } = this.props.match.params;
     axios.get(`/api/listings/${postid}`)
     .then(response => {
-      this.setState({post: response.data[0]})
+      this.setState({post: response.data[0]});
+    })
+    axios.get(`/api/photos/${postid}`)
+    .then(response => {
+      this.setState({photos: response.data});
     })
   }
 
@@ -30,6 +35,15 @@ class Post extends Component {
 
   render() {
     const { type, title, description, price, address, city, usstate, zip, username } = this.state.post;
+
+    const photos = this.state.photos.map((photo, i) => {
+      return (
+        <div key={i}>
+          <img src={photo.photo_url} alt={i} height='200px' width='200px' />
+        </div>
+      )
+    });
+
     return (
       <div className="post-container">
         <p>Type: {type}</p>
@@ -41,6 +55,9 @@ class Post extends Component {
         </div>
         <div>
           { this.state.post.worker ? <p>Sorry, this job is taken!</p> : <button onClick={this.takeJob}>Take this gig!</button> }
+        </div>
+        <div>
+          {photos}
         </div>
       </div>
     )

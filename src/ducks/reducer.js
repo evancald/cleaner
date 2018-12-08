@@ -11,8 +11,8 @@ const initialState = {
   address: '',
   city: '',
   usState: '',
-  zip: ''
-
+  zip: '',
+  photos: []
 }
 
 const UPDATE_USERNAME = 'UPDATE_USERNAME';
@@ -28,6 +28,7 @@ const UPDATE_USSTATE = 'UPDATE_USSTATE';
 const UPDATE_ZIP = 'UPDATE_ZIP';
 const CLEAR_INPUTS = 'CLEAR_INPUTS';
 const RESET_STATE = 'RESET_STATE';
+const UPDATE_PHOTOS = 'UPDATE_PHOTOS';
 
 function reducer(state = initialState, action) {
   switch(action.type) {
@@ -53,6 +54,8 @@ function reducer(state = initialState, action) {
       return Object.assign({}, state, { usState: action.payload });
     case UPDATE_ZIP:
       return Object.assign({}, state, { zip: action.payload });
+    case UPDATE_PHOTOS:
+      return Object.assign({}, state, { photos: action.payload });
     case CLEAR_INPUTS:
       return Object.assign({}, state, action.payload);
     case RESET_STATE:
@@ -139,6 +142,13 @@ export function updateZip(zip) {
   }
 }
 
+export function updatePhotos(photos) {
+  return {
+    type: UPDATE_PHOTOS,
+    payload: photos
+  }
+}
+
 export function clearInputs() {
   return {
     type: CLEAR_INPUTS,
@@ -150,7 +160,8 @@ export function clearInputs() {
       address: '',
       city: '',
       usState: '',
-      zip: ''
+      zip: '',
+      photos: []
     }
   }
 }

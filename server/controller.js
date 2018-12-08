@@ -55,16 +55,33 @@ module.exports = {
         res.status(200).send(post);
       })
     },
+    //Get Photos
+    getPhotos: (req, res) => {
+      const { postid } = req.params;
+      req.app.get('db').get_photos([postid])
+      .then((photos) => {
+        res.status(200).send(photos);
+      })
+    },
     //New Listing
     newListing: (req, res) => {
-      const { type, title, description, price, address, city, usState, zip,} = req.body;
+      const { type, title, description, price, address, city, usState, zip, default_photo } = req.body;
       const { userid:author } = req.session.user;
-      req.app.get('db').create_new_listing([author, type, title, description, price, address, city, usState, zip])
-      .then(() => {
-        res.status(200).send();
+      req.app.get('db').create_new_listing([author, type, title, description, price, address, city, usState, zip, default_photo])
+      .then((response) => {
+        //console.log(response);
+        res.status(200).send(response);
       })
       .catch(err => {
         console.log('Error:', err);
+      })
+    },
+    //Add Photos
+    addPhoto: (req, res) => {
+      const { photo, postid } = req.body;
+      req.app.get('db').add_photo([photo, postid])
+      .then(() => {
+        res.status(200).send();
       })
     },
     //Take Job

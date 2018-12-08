@@ -6,12 +6,13 @@ import Dashboard from './components/Dashboard/Dashboard';
 import StepOne from './components/Form/StepOne/StepOne';
 import StepTwo from './components/Form/StepTwo/StepTwo';
 import StepThree from './components/Form/StepThree/StepThree';
+import StepFour from './components/Form/StepFour/StepFour';
 import Review from './components/Form/Review/Review';
 
 import MyJobs from './components/MyJobs/MyJobs';
 
-
 import Post from './components/Post/Post';
+
 import Register from './components/Register/Register';
 
 export default (
@@ -23,6 +24,7 @@ export default (
     <Route path="/new/StepOne" component= { StepOne } />
     <Route path="/new/StepTwo" component={ StepTwo } />
     <Route path="/new/StepThree" component={ StepThree } />
+    <Route path="/new/StepFour" component={ StepFour } />
     <Route path="/new/review" component={ Review } />
 
     <Route path="/post/:postid" component={ Post } />

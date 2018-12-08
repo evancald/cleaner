@@ -40,11 +40,13 @@ app.post('/api/auth/logout', controller.logout);
 app.get('/api/listings/all', controller.getAllListings);
 //Single Post
 app.get('/api/listings/:postid', controller.getPost);
+app.get('/api/photos/:postid', controller.getPhotos);
 //My Jobs
 app.get('/api/myJobs', controller.myJobs);
 
 //Create Listing
 app.post('/api/listings/new', controller.newListing);
+app.post('/api/addPhoto', controller.addPhoto);
 
 //Search Listings
 app.get('/api/searchPosts', searchController.searchListings);

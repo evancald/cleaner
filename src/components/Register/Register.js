@@ -56,10 +56,13 @@ class Register extends Component {
           </Dropzone>
         </div>
         <div>
-          { this.props.profilePicture ? 
+          { this.props.profilePicture && this.props.username && this.props.password ? 
           <div> 
             <button onClick={this.register}>Register</button> 
-          </div> : null }
+          </div> : 
+          <div>
+            <p>Please complete all fields before continuing</p>
+          </div> }
         </div>
       </div>
     )

@@ -6,7 +6,7 @@ import { updateAddress, updateCity, updateUsState, updateZip } from '../../../du
 class StepThree extends Component {
 
   next = () => {
-    this.props.history.push('/new/review');
+    this.props.history.push('/new/StepFour');
   }
 
   previous = () => {
