@@ -67,5 +67,22 @@ module.exports = {
       .catch(err => {
         console.log('Error:', err);
       })
+    },
+    //Take Job
+    takeJob: (req, res) => {
+      const { userid } = req.session.user;
+      const { jobid } = req.body;
+      req.app.get('db').take_job([userid, jobid])
+      .then(() => {
+        res.status(200).send();
+      })
+    },
+    //My Jobs
+    myJobs: (req, res) => {
+      const { userid } = req.session.user;
+      req.app.get('db').my_jobs([userid])
+      .then(myJobs => {
+        res.status(200).send(myJobs);
+      })
     }
   }

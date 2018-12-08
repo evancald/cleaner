@@ -29,6 +29,16 @@ class Post extends Component {
     })
   }
 
+  takeJob = () => {
+    const { postid } = this.props.match.params;
+    axios.put('/api/listings/takeJob', {
+      jobid: postid
+    })
+    .then(() => {
+      this.props.history.push('/myJobs');
+    })
+  }
+
   render() {
     const { type, title, description, author, price, address, city, usstate, zip } = this.state;
     return (
@@ -39,6 +49,9 @@ class Post extends Component {
         <p>Price: ${price} </p>
         <div>
           Complete this listing at {address} {city}, {usstate} {zip}
+        </div>
+        <div>
+          <button onClick={this.takeJob}>Take this gig!</button>
         </div>
       </div>
     )

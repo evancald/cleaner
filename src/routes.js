@@ -8,6 +8,8 @@ import StepTwo from './components/Form/StepTwo/StepTwo';
 import StepThree from './components/Form/StepThree/StepThree';
 import Review from './components/Form/Review/Review';
 
+import MyJobs from './components/MyJobs/MyJobs';
+
 
 import Post from './components/Post/Post';
 import Register from './components/Register/Register';
@@ -24,5 +26,7 @@ export default (
     <Route path="/new/review" component={ Review } />
 
     <Route path="/post/:postid" component={ Post } />
+
+    <Route path="/myJobs" component={ MyJobs } />
   </Switch>
 )

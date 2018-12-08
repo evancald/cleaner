@@ -1,0 +1,1 @@
+SELECT * FROM posts WHERE worker=$1;

@@ -40,12 +40,17 @@ app.post('/api/auth/logout', controller.logout);
 app.get('/api/listings/all', controller.getAllListings);
 //Single Post
 app.get('/api/listings/:postid', controller.getPost);
+//My Jobs
+app.get('/api/myJobs', controller.myJobs);
 
 //Create Listing
 app.post('/api/listings/new', controller.newListing);
 
 //Search Listings
-app.get('/api/searchPosts', searchController.searchListings)
+app.get('/api/searchPosts', searchController.searchListings);
+
+//Take Job (add job to user's 'my jobs' list)
+app.put('/api/listings/takeJob', controller.takeJob);
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server listening on port ${SERVER_PORT}`)
