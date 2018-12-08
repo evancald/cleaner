@@ -23,7 +23,6 @@ module.exports = {
               return res.send(err);
             } if (isCorrectPassword) {
               req.session.user = user[0];
-              console.log(req.session.user);
               res.status(200).send(user[0]);
             } else {
               res.status(200).send();

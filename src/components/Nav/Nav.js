@@ -20,6 +20,10 @@ class Nav extends Component {
     })
   }
 
+  myJobs = () => {
+    this.props.history.push('/myJobs');
+  }
+
   logout = () => {
     axios.post('/api/auth/logout')
     .then(() => {
@@ -41,6 +45,7 @@ class Nav extends Component {
           <div>{this.props.username}</div>
           <button onClick={() => this.props.history.push('/dashboard')}>Dashboard</button>
           <button onClick={this.createNewListing}>New Listing</button>
+          <button onClick={this.myJobs}>My Jobs</button>
           <button onClick={this.logout}>Logout</button>
         </div>
       )
