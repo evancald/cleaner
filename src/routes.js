@@ -10,6 +10,7 @@ import StepFour from './components/Form/StepFour/StepFour';
 import Review from './components/Form/Review/Review';
 
 import MyJobs from './components/MyJobs/MyJobs';
+import MyListings from './components/MyListings/MyListings';
 
 import Post from './components/Post/Post';
 
@@ -30,5 +31,6 @@ export default (
     <Route path="/post/:postid" component={ Post } />
 
     <Route path="/myJobs" component={ MyJobs } />
+    <Route path="/myListings" component={ MyListings } />
   </Switch>
 )

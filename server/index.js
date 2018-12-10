@@ -44,9 +44,15 @@ app.get('/api/photos/:postid', controller.getPhotos);
 //My Jobs
 app.get('/api/myJobs', controller.myJobs);
 
+//My listings
+app.get('/api/myListings', controller.myListings);
+
 //Create Listing
 app.post('/api/listings/new', controller.newListing);
 app.post('/api/addPhoto', controller.addPhoto);
+
+//Delete Listing
+app.delete('/api/listings/:postid', controller.deleteListing);
 
 //Search Listings
 app.get('/api/searchPosts', searchController.searchListings);

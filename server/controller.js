@@ -101,5 +101,21 @@ module.exports = {
       .then(myJobs => {
         res.status(200).send(myJobs);
       })
+    },
+    //My Listings
+    myListings: (req, res) => {
+      const { userid } = req.session.user;
+      req.app.get('db').get_my_listings([userid])
+      .then(myListings => {
+        res.status(200).send(myListings);
+      })
+    },
+    //Delete Listing
+    deleteListing: (req, res) => {
+      const { postid } = req.params;
+      req.app.get('db').delete_listing([postid])
+      .then(() => {
+        res.status(200).send();
+      })
     }
   }
