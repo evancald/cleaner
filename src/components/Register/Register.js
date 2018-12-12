@@ -43,8 +43,7 @@ class Register extends Component {
     const { updateUsername, updatePassword } = this.props;
     const { username, password } = this.props;
     return (
-      <div>
-        <div>
+        <div className="center-form">
           Desired Username: <input type="text" onChange={(e) => updateUsername(e.target.value)} value={username} placeholder="Username" />
           <br />
           Password: <input type="password" onChange={(e) => updatePassword(e.target.value)} value={password} placeholder="Password" />
@@ -54,7 +53,6 @@ class Register extends Component {
               Drop your profile picture here, or click to upload.
             </p>
           </Dropzone>
-        </div>
         <div>
           { this.props.profilePicture && this.props.username && this.props.password ? 
           <div> 

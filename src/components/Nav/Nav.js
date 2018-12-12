@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Nav.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateUsername, updateProfilePicture, resetState } from '../../ducks/reducer';
@@ -45,7 +44,7 @@ class Nav extends Component {
     if (this.props.location.pathname !== '/' && this.props.location.pathname !== '/register' ) {
       return (
         <div className="nav-container">
-          <img src={this.props.profilePicture} alt="user avatar" height="100px" width="100px" />
+          <img className="profile-picture" src={this.props.profilePicture} alt="user avatar" height="100px" width="100px" />
           <div>{this.props.username}</div>
           <button onClick={() => this.props.history.push('/dashboard')}>Dashboard</button>
           <button onClick={this.createNewListing}>New Listing</button>
