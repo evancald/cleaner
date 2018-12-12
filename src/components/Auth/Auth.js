@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { updateUsername, updatePassword, updateProfilePicture } from '../../ducks/reducer';
 import axios from 'axios';
 
@@ -27,14 +28,13 @@ class Auth extends Component {
     const { updateUsername, updatePassword } = this.props;
     return (
       <div className="center-form">
-        Cleaner
-        <br />
+        <h1 className="app-name">Cleaner</h1>
         <input onChange={(e) => updateUsername(e.target.value)} type='text' value={this.props.username} placeholder='Username' />
         <input onChange={(e) => updatePassword(e.target.value)} type='password' value={this.props.password} placeholder='Password' />
         <br />
         <div className="auth-buttons">
           <button onClick={this.login}>Login</button>
-          <button onClick={() => this.props.history.push('/register')}>Register</button>
+          <p>Don't have an account? <Link to="/register">Get Started</Link></p>
         </div>
       </div>
     )

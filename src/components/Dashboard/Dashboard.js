@@ -54,18 +54,20 @@ class Dashboard extends Component {
   render() {
     const listings = this.state.listings.map((listing, i) => {
       return (
-        <div className="post" key={i} onClick={() => this.props.history.push(`/post/${listing.id}`)} style={ { backgroundImage: `url(${listing.default_photo})`} }>
-          <h3>{listing.title}</h3>
-          <span> by {listing.username}</span>
-          <br />
-          <span>Price: ${listing.price}</span>
-          <br />
-          <span>Near {listing.city}</span>
+        <div className="module" key={i} onClick={() => this.props.history.push(`/post/${listing.id}`)} style={ { backgroundImage: `url(${listing.default_photo})`} }>
+          <div className="listing-content">
+            <h3>{listing.title}</h3>
+            <span> by {listing.username}</span>
+            <br />
+            <span>Price: ${listing.price}</span>
+            <br />
+            <span>Near {listing.city}</span>
+          </div>
         </div>
       )
     })
     return (
-      <div className="dashboard-container">
+      <div className="dashboard">
         
         <div className="search-bar">
           <select id="type" onChange={(e) => this.updateListingType(e.target.value)} value={this.state.listingType}>
@@ -80,7 +82,7 @@ class Dashboard extends Component {
           <button onClick={this.resetSearch}>Reset</button>
         </div>
 
-        <div className="posts-container">
+        <div className="grid">
           {listings}
         </div>
 

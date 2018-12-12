@@ -8,6 +8,8 @@ class App extends Component {
   render() {
     return (
       <div className="app">
+      <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet"></link>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"></link>
         <Route component={Nav} />
         { routes }
       </div>
