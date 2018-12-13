@@ -6,6 +6,20 @@ import axios from 'axios';
 
 class Auth extends Component {
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.keydownHandler)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.keydownHandler);
+  }
+
+  keydownHandler = (e) => {
+    if (e.keyCode === 13) {
+      this.login();
+    }
+  }
+
   login = () => {
     const { updateUsername, updateProfilePicture } = this.props;
     axios.post('/api/auth/login', {
@@ -33,7 +47,7 @@ class Auth extends Component {
         <input onChange={(e) => updatePassword(e.target.value)} type='password' value={this.props.password} placeholder='Password' />
         <br />
         <div className="auth-buttons">
-          <button onClick={this.login}>Login</button>
+          <button className="login-button" onClick={this.login}>Login</button>
           <p>Don't have an account? <Link to="/register">Get Started</Link></p>
         </div>
       </div>

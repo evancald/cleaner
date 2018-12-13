@@ -55,13 +55,10 @@ class Dashboard extends Component {
     const listings = this.state.listings.map((listing, i) => {
       return (
         <div className="module" key={i} onClick={() => this.props.history.push(`/post/${listing.id}`)} style={ { backgroundImage: `url(${listing.default_photo})`} }>
-          <div className="listing-content">
-            <h3>{listing.title}</h3>
-            <span> by {listing.username}</span>
-            <br />
-            <span>Price: ${listing.price}</span>
-            <br />
-            <span>Near {listing.city}</span>
+          <div className="listing-overview">
+            <div className="listing-bullet">{listing.title}</div>
+            <div className="listing-bullet">${listing.price}</div>
+            <div className="listing-bullet">{listing.city}, {listing.usstate}</div>
           </div>
         </div>
       )

@@ -44,9 +44,12 @@ class Register extends Component {
     const { username, password } = this.props;
     return (
         <div className="center-form">
+        <div>
           Desired Username: <input type="text" onChange={(e) => updateUsername(e.target.value)} value={username} placeholder="Username" />
-          <br />
+        </div>
+        <div>
           Password: <input type="password" onChange={(e) => updatePassword(e.target.value)} value={password} placeholder="Password" />
+        </div>
           <br />
           <Dropzone onDrop={ this.handleDrop } multiple accept="image/*" >
             <p> 

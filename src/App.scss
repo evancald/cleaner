@@ -1,6 +1,31 @@
+//Variables
 $logo-font: 'Dosis', sans-serif;
 $ui-font: 'Open Sans', sans-serif;
 $container-bgcolor: ghostwhite;
+$shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+//Extend/Inheritance
+%centered-tile {
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
+  align-items: center;
+  position: absolute;
+  box-shadow: $shadow;
+  border-radius: 10px;
+  background-color: $container-bgcolor;
+  font: 100% $ui-font;
+}
+
+%next-button {
+  border: none;
+  outline: none;
+  text-decoration: none;
+  background-color: lightgreen;
+}
 
 html, body {
   width: 100%;
@@ -12,26 +37,37 @@ html, body {
 }
 
 .app-name {
-  font: 120% $logo-font;
+  font: 200% $logo-font;
 }
 
+
 .center-form {
-  top: 50%;
-  left: 50%;
+  @extend %centered-tile;
   height: 300px;
   width: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-content: center;
-  align-items: center;
-  position: absolute;
   margin-top: -150px;
   margin-left: -250px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 10px;
-  background-color: $container-bgcolor;
-  font: 100% $ui-font;
+}
+
+.post-container {
+  @extend %centered-tile;
+  height: 800px;
+  width: 700px;
+  margin-top: -500px;
+  margin-left: -350px;
+}
+
+.auth-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-button {
+  height: 50px;
+  width: 250px;
+  @extend %next-button;
 }
 
 .nav-container {
@@ -46,29 +82,29 @@ html, body {
   left: 0px;
   height: 100vh;
   width: 120px;
+  box-shadow: $shadow;
 }
 
 .profile-picture {
   border-radius: 50px;
 }
 
-.dashboard {
-  background-color: $container-bgcolor;
-  height: 1000px;
-  width: 1000px;
-}
-
-
 .search-bar {
   position: absolute;
-  width: 80vw;
+  top: 0;
+  left: 200;
+  width: 70vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 25px;
+  margin-bottom: 100px;
 }
 
 .grid {
+  margin-top: 50px;
+  margin-bottom: 25px;
+
   /* Grid Fallback */
   display: flex;
   flex-wrap: wrap;
@@ -88,10 +124,13 @@ html, body {
   height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
+  color: white;
   /* Flex Fallback */
   margin-left: 5px;
   margin-right: 5px;
   flex: 1 1 300px;
+  box-shadow: $shadow;
+  border-radius: 5px;
 }
 
 /* If Grid is supported, remove the margin we set for the fallback */
@@ -99,4 +138,24 @@ html, body {
   .module {
     margin: 0;
   }
+}
+
+.listing-overview {
+  height: 75px;
+  width: 500px;
+  margin-top: 225px;
+  display: flex;
+  flex-direction: column;
+
+  background-color: $container-bgcolor;
+  opacity: .75;
+  color: black;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.listing-bullet {
+  font: 100% $ui-font;
+  opacity: 1;
+  margin-left: 5px;
+  margin-top: 3px;
 }

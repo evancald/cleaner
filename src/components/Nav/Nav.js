@@ -45,7 +45,7 @@ class Nav extends Component {
       return (
         <div className="nav-container">
           <img className="profile-picture" src={this.props.profilePicture} alt="user avatar" height="100px" width="100px" />
-          <div>{this.props.username}</div>
+          <h3>{this.props.username}</h3>
           <button onClick={() => this.props.history.push('/dashboard')}>Dashboard</button>
           <button onClick={this.createNewListing}>New Listing</button>
           <button onClick={this.myJobs}>My Jobs</button>
