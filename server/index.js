@@ -6,8 +6,10 @@ const massive = require('massive');
 const session = require('express-session');
 const controller = require('./controller');
 const searchController = require('./searchController');
+const nodemailer = require('nodemailer');
+const sgTransport = require('nodemailer-sendgrid-transport');
 
-const { SERVER_PORT, DATABASE_STRING, SESSION_SECRET } = process.env;
+const { SERVER_PORT, DATABASE_STRING, SESSION_SECRET, SENDGRID_API_KEY } = process.env;
 
 const app = express();
 app.use(cors());
@@ -26,6 +28,13 @@ massive(DATABASE_STRING)
   .catch(err => {
     console.log('Database connection error', err);
   })
+
+// using SendGrid's v3 Node.js Library
+// https://github.com/sendgrid/sendgrid-nodejs
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(SENDGRID_API_KEY);
+
+//const client = nodemailer.createTransport(sgTransport(options))
 
 //Endpoints
 
@@ -59,6 +68,19 @@ app.get('/api/searchPosts', searchController.searchListings);
 
 //Take Job (add job to user's 'my jobs' list)
 app.put('/api/listings/takeJob', controller.takeJob);
+
+//Send Email Message
+app.post('/api/sendMessage', (req, res) => {
+  const { toEmail, message, postTitle } = req.body
+  const msg = {
+    to: toEmail,
+    from: 'no-reply@cleanerapp.com',
+    subject: `New message about ${postTitle}`,
+    text: message
+  };
+  sgMail.send(msg);
+  res.status(200).send('success');
+})
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server listening on port ${SERVER_PORT}`)

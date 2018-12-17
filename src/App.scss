@@ -50,11 +50,9 @@ html, body {
 }
 
 .post-container {
-  @extend %centered-tile;
-  height: 800px;
-  width: 700px;
-  margin-top: -500px;
-  margin-left: -350px;
+  position: fixed;
+  top: 0;
+  left: 120;
 }
 
 .auth-buttons {
@@ -153,9 +151,16 @@ html, body {
   border-radius: 0px 0px 5px 5px;
 }
 
+.listing-overview:hover {
+  opacity: 1;
+}
+
 .listing-bullet {
   font: 100% $ui-font;
   opacity: 1;
   margin-left: 5px;
   margin-top: 3px;
+}
+
+.essay-box {
 }

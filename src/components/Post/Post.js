@@ -7,7 +7,8 @@ class Post extends Component {
     super();
     this.state = {
       post: {},
-      photos: []
+      photos: [],
+      message: ''
     }
   }
 
@@ -20,6 +21,26 @@ class Post extends Component {
     axios.get(`/api/photos/${postid}`)
     .then(response => {
       this.setState({photos: response.data});
+    })
+  }
+
+  updateMessage = (message) => {
+    this.setState({message});
+  }
+
+  sendMessage = () => {
+    axios.post('/api/sendMessage', {
+      toEmail: this.state.post.email,
+      message: this.state.message,
+      postTitle: this.state.post.title
+    })
+    .then(response => {
+      if (response.data === 'success') {
+        window.alert('message sent successfully');
+        this.setState({message: ''});
+      } else {
+        window.alert('Sorry, something went wrong. Please try again.');
+      }
     })
   }
 
@@ -38,7 +59,7 @@ class Post extends Component {
 
     const photos = this.state.photos.map((photo, i) => {
       return (
-        <div key={i}>
+        <div key={i} className="module">
           <img src={photo.photo_url} alt={i} height='200px' width='200px' />
         </div>
       )
@@ -54,9 +75,11 @@ class Post extends Component {
           Complete this listing at {address} {city}, {usstate} {zip}
         </div>
         <div>
+            <input className="essay-box" type="text" onChange={(e) => this.updateMessage(e.target.value)} value={this.state.message} />
+          <button onClick={this.sendMessage}>Send Message</button>
           { this.state.post.worker ? <p>Sorry, this job is taken!</p> : <button onClick={this.takeJob}>Take this gig!</button> }
         </div>
-        <div>
+        <div className="grid">
           {photos}
         </div>
       </div>
