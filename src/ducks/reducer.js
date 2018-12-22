@@ -2,6 +2,7 @@ const initialState = {
   //Auth
   username: '',
   password: '',
+  confirmPassword: '',
   profilePicture: '',
   //Form inputs
   type: null,
@@ -29,6 +30,7 @@ const UPDATE_ZIP = 'UPDATE_ZIP';
 const CLEAR_INPUTS = 'CLEAR_INPUTS';
 const RESET_STATE = 'RESET_STATE';
 const UPDATE_PHOTOS = 'UPDATE_PHOTOS';
+const UPDATE_CONFIRM_PASSWORD = 'UPDATE_CONFIRM_PASSWORD';
 
 function reducer(state = initialState, action) {
   switch(action.type) {
@@ -36,6 +38,8 @@ function reducer(state = initialState, action) {
       return Object.assign({}, state, { username: action.payload});
     case UPDATE_PASSWORD:
       return Object.assign({}, state, { password: action.payload });
+    case UPDATE_CONFIRM_PASSWORD:
+      return Object.assign({}, state, { confirmPassword: action.payload});
     case UPDATE_PROFILEPIC:
       return Object.assign({}, state, { profilePicture: action.payload });
     case UPDATE_TYPE:
@@ -83,6 +87,13 @@ export function updatePassword(password) {
   return {
     type: UPDATE_PASSWORD,
     payload: password
+  }
+}
+
+export function updateConfirmPassword(confirmPassword) {
+  return {
+    type: UPDATE_CONFIRM_PASSWORD,
+    payload: confirmPassword
   }
 }
 

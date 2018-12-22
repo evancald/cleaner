@@ -6,8 +6,8 @@ const massive = require('massive');
 const session = require('express-session');
 const controller = require('./controller');
 const searchController = require('./searchController');
-const nodemailer = require('nodemailer');
-const sgTransport = require('nodemailer-sendgrid-transport');
+//const nodemailer = require('nodemailer');
+//const sgTransport = require('nodemailer-sendgrid-transport');
 
 const { SERVER_PORT, DATABASE_STRING, SESSION_SECRET, SENDGRID_API_KEY } = process.env;
 

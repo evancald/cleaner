@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
-import { updateUsername, updatePassword, updateProfilePicture } from '../../ducks/reducer';
+import { updateUsername, updatePassword, updateConfirmPassword, updateProfilePicture } from '../../ducks/reducer';
 
 class Register extends Component {
 
@@ -40,8 +40,8 @@ class Register extends Component {
   }
 
   render() {
-    const { updateUsername, updatePassword } = this.props;
-    const { username, password } = this.props;
+    const { updateUsername, updatePassword, updateConfirmPassword } = this.props;
+    const { username, password, confirmPassword } = this.props;
     return (
         <div className="center-form">
         <div>
@@ -50,6 +50,10 @@ class Register extends Component {
         <div>
           Password: <input type="password" onChange={(e) => updatePassword(e.target.value)} value={password} placeholder="Password" />
         </div>
+        <div>
+          Confirm Password: <input type="password" onChange={(e) => updateConfirmPassword(e.target.value)} value={confirmPassword} placeholder="Confirm Password" />
+        </div>
+        
           <br />
           <Dropzone onDrop={ this.handleDrop } multiple accept="image/*" >
             <p> 
@@ -71,12 +75,13 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { username, password, profilePicture } = state;
+  const { username, password, confirmPassword, profilePicture } = state;
   return {
     username,
     password,
+    confirmPassword,
     profilePicture
   }
 }
 
-export default connect(mapStateToProps, { updateUsername, updatePassword, updateProfilePicture })(Register);
+export default connect(mapStateToProps, { updateUsername, updatePassword, updateConfirmPassword, updateProfilePicture })(Register);
