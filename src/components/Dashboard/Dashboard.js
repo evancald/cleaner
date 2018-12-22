@@ -14,6 +14,17 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this.resetListings();
+    document.addEventListener('keydown', this.enterHandler);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.enterHandler);
+  }
+
+  enterHandler = (e) => {
+    if (e.keyCode === 13) {
+      this.performSearch();
+    }
   }
 
   resetListings = () => {

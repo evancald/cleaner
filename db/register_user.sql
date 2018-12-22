@@ -1,1 +1,1 @@
-INSERT INTO users (username, password, profile_pic) VALUES ($1, $2, $3);
+INSERT INTO users (username, email, password, profile_pic) VALUES ($1, $2, $3, $4);

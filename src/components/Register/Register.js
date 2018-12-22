@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
-import { updateUsername, updatePassword, updateConfirmPassword, updateProfilePicture } from '../../ducks/reducer';
+import { updateUsername, updateEmail, updatePassword, updateConfirmPassword, updateProfilePicture } from '../../ducks/reducer';
 
 class Register extends Component {
 
@@ -28,31 +28,39 @@ class Register extends Component {
   }
 
   register = () => {
-    const { username, password, profilePicture } = this.props;
-    axios.post('/api/auth/register', {
-      username,
-      password,
-      profilePicture
-    }).then(() => {
-      window.alert('Thanks for joining Cleaner! Please login using your new account');
-      this.props.history.push('/');
-    })
+    const { username, email, password, confirmPassword, profilePicture } = this.props;
+    if (password !== confirmPassword) {
+      window.alert('Your password confirmation does not match. Please try again')
+    } else {
+      axios.post('/api/auth/register', {
+        username,
+        email,
+        password,
+        profilePicture
+      }).then(() => {
+        window.alert('Thanks for joining Cleaner! Please login using your new account');
+        this.props.history.push('/');
+      })
+    }
   }
 
   render() {
-    const { updateUsername, updatePassword, updateConfirmPassword } = this.props;
-    const { username, password, confirmPassword } = this.props;
+    const { updateUsername, updateEmail, updatePassword, updateConfirmPassword } = this.props;
+    const { username, email, password, confirmPassword, profilePicture } = this.props;
     return (
         <div className="center-form">
-        <div>
-          Desired Username: <input type="text" onChange={(e) => updateUsername(e.target.value)} value={username} placeholder="Username" />
-        </div>
-        <div>
-          Password: <input type="password" onChange={(e) => updatePassword(e.target.value)} value={password} placeholder="Password" />
-        </div>
-        <div>
-          Confirm Password: <input type="password" onChange={(e) => updateConfirmPassword(e.target.value)} value={confirmPassword} placeholder="Confirm Password" />
-        </div>
+          <div>
+            Desired Username: <input type="text" onChange={(e) => updateUsername(e.target.value)} value={username} placeholder="Username" />
+          </div>
+          <div>
+            Email: <input type="text" onChange={(e) => updateEmail(e.target.value)} value={email} placeholder="Email" />
+          </div>
+          <div>
+            Password: <input type="password" onChange={(e) => updatePassword(e.target.value)} value={password} placeholder="Password" />
+          </div>
+          <div>
+            Confirm Password: <input type="password" onChange={(e) => updateConfirmPassword(e.target.value)} value={confirmPassword} placeholder="Confirm Password" />
+          </div>
         
           <br />
           <Dropzone onDrop={ this.handleDrop } multiple accept="image/*" >
@@ -61,9 +69,9 @@ class Register extends Component {
             </p>
           </Dropzone>
         <div>
-          { this.props.profilePicture && this.props.username && this.props.password ? 
+          { username && email && password && confirmPassword && profilePicture ? 
           <div> 
-            <button onClick={this.register}>Register</button> 
+            <button className="login-button" onClick={this.register}>Register</button> 
           </div> : 
           <div>
             <p>Please complete all fields before continuing</p>
@@ -75,13 +83,14 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { username, password, confirmPassword, profilePicture } = state;
+  const { username, email, password, confirmPassword, profilePicture } = state;
   return {
     username,
+    email,
     password,
     confirmPassword,
     profilePicture
   }
 }
 
-export default connect(mapStateToProps, { updateUsername, updatePassword, updateConfirmPassword, updateProfilePicture })(Register);
+export default connect(mapStateToProps, { updateUsername, updateEmail, updatePassword, updateConfirmPassword, updateProfilePicture })(Register);

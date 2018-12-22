@@ -2,13 +2,14 @@ const bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
   //Auth
+  //Register
   register: (req, res) => {
-    const { username, password, profilePicture } = req.body;
+    const { username, email, password, profilePicture } = req.body;
     bcrypt.hash(password, null, null, (err, hash) => {
       if (err) {
         return res.send('Something went wrong during hashing', err);
       }
-      req.app.get('db').register_user([username, hash, profilePicture])
+      req.app.get('db').register_user([username, email, hash, profilePicture])
         .then(() => {
           res.status(200).send('User registered successfully')
         })

@@ -1,6 +1,7 @@
 const initialState = {
   //Auth
   username: '',
+  email: '',
   password: '',
   confirmPassword: '',
   profilePicture: '',
@@ -17,6 +18,7 @@ const initialState = {
 }
 
 const UPDATE_USERNAME = 'UPDATE_USERNAME';
+const UPDATE_EMAIL = 'UPDATE_EMAIL';
 const UPDATE_PROFILEPIC = 'UPDATE_PROFILEPIC';
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 const UPDATE_TYPE = 'UPDATE_TYPE';
@@ -36,6 +38,8 @@ function reducer(state = initialState, action) {
   switch(action.type) {
     case UPDATE_USERNAME:
       return Object.assign({}, state, { username: action.payload});
+    case UPDATE_EMAIL:
+      return Object.assign({}, state, { email: action.payload});
     case UPDATE_PASSWORD:
       return Object.assign({}, state, { password: action.payload });
     case UPDATE_CONFIRM_PASSWORD:
@@ -73,6 +77,13 @@ export function updateUsername(username) {
   return {
     type: UPDATE_USERNAME,
     payload: username
+  }
+}
+
+export function updateEmail(email) {
+  return {
+    type: UPDATE_EMAIL,
+    payload: email
   }
 }
 
