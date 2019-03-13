@@ -48,7 +48,7 @@ class Register extends Component {
     const { updateUsername, updateEmail, updatePassword, updateConfirmPassword } = this.props;
     const { username, email, password, confirmPassword, profilePicture } = this.props;
     return (
-        <div className="center-form">
+        <div className="center-register">
           <div>
             Desired Username: <input type="text" onChange={(e) => updateUsername(e.target.value)} value={username} placeholder="Username" />
           </div>

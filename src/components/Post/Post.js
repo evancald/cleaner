@@ -74,8 +74,8 @@ class Post extends Component {
         <div>
           Complete this listing at {address} {city}, {usstate} {zip}
         </div>
-        <div>
-            <input className="essay-box" type="text" onChange={(e) => this.updateMessage(e.target.value)} value={this.state.message} />
+        <div className="post-response-options">
+          <textarea className="essay-box" type="text" cols="60" rows="5" onChange={(e) => this.updateMessage(e.target.value)} value={this.state.message}></textarea>
           <button onClick={this.sendMessage}>Send Message</button>
           { this.state.post.worker ? <p>Sorry, this job is taken!</p> : <button onClick={this.takeJob}>Take this gig!</button> }
         </div>

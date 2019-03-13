@@ -41,18 +41,27 @@ html, body {
 }
 
 
+.center-register {
+  @extend %centered-tile;
+  height: 400px;
+  width: 600px;
+  margin-top: -200px;
+  margin-left: -300px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .center-form {
   @extend %centered-tile;
   height: 300px;
   width: 500px;
   margin-top: -150px;
   margin-left: -250px;
+  align-items: center;
 }
 
 .post-container {
-  position: fixed;
-  top: 0;
-  left: 120;
+
 }
 
 .auth-buttons {
@@ -163,4 +172,15 @@ html, body {
 }
 
 .essay-box {
+
+}
+
+.post-response-options {
+  margin-left: 200px;
+  height: 150px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
