@@ -19,8 +19,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-//For Build:
-app.use( express.static( `${__dirname}/../build` ) );
+//For Build
+app.use( express.static( `${__dirname}/../build` ) ) 
 
 massive(DATABASE_STRING)
   .then(db => {
@@ -85,9 +85,9 @@ app.post('/api/sendMessage', (req, res) => {
 })
 
 //For Build:
-const path = require('path')
-app.get('*', (req, res)=>{
-  res.sendFile(path.join(__dirname, '../build/index.html'));
+const path = require('path');
+app.get('/*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '..','build','index.html'));
 })
 
 app.listen(SERVER_PORT, () => {

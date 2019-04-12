@@ -28,7 +28,7 @@ class Dashboard extends Component {
   }
 
   resetListings = () => {
-    axios.get('/api/listings/all')
+    axios.get('api/listings/all')
     .then(response => {
       this.setState({ listings: response.data });
     })
@@ -56,7 +56,7 @@ class Dashboard extends Component {
   }
 
   performSearch = () => {
-    axios.get(`/api/searchPosts?searchText=${this.state.searchText}&city=${this.state.searchCity}&type=${this.state.listingType}`)
+    axios.get(`api/searchPosts?searchText=${this.state.searchText}&city=${this.state.searchCity}&type=${this.state.listingType}`)
     .then(response => {
       this.setState({ listings: response.data });
     })
