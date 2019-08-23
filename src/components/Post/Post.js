@@ -75,10 +75,16 @@ class Post extends Component {
           Complete this listing at {address} {city}, {usstate} {zip}
         </div>
         <div className="post-response-options">
-          <textarea className="essay-box" type="text" cols="60" rows="5" onChange={(e) => this.updateMessage(e.target.value)} value={this.state.message}></textarea>
-          <button onClick={this.sendMessage}>Send Message</button>
-          { this.state.post.worker ? <p>Sorry, this job is taken!</p> : <button onClick={this.takeJob}>Take this gig!</button> }
-        </div>
+          { this.state.post.worker
+          ? 
+            <p>Sorry, this job is taken!</p> 
+          :           
+            <div>
+              <textarea className="essay-box" type="text" cols="60" rows="5" onChange={(e) => this.updateMessage(e.target.value)} value={this.state.message}></textarea>
+              <button onClick={this.sendMessage}>Send Message</button>
+            </div> 
+          }
+          </div>
         <div className="grid">
           {photos}
         </div>

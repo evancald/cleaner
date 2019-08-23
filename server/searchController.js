@@ -1,11 +1,9 @@
 module.exports = {
   searchListings: (req, res) => {
     const { searchText, city, type } = req.query;
-    console.log(type);
     const { userid } = req.session.user;
     req.app.get('db').get_all_listings()
     .then(listings => {
-      console.log(listings);
       if (searchText) {
         listings = listings.filter(listing => {
           return listing.title.toLowerCase().indexOf(searchText.toLowerCase()) !== -1;

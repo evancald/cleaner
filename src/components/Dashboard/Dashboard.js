@@ -65,7 +65,7 @@ class Dashboard extends Component {
   render() {
     const listings = this.state.listings.map((listing, i) => {
       return (
-        <div className="module" key={i} onClick={() => this.props.history.push(`/post/${listing.id}`)} style={ { backgroundImage: `url(${listing.default_photo})`} }>
+        <div className="module" key={i} onClick={() => this.props.history.push(`/post/${listing.id}`)} style={ { backgroundImage: `url(${listing.default_photo})`, cursor:'pointer'} }>
           <div className="listing-overview">
             <div className="listing-bullet">{listing.title}</div>
             <div className="listing-bullet">${listing.price}</div>

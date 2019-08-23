@@ -13,6 +13,7 @@ class MyJobs extends Component {
   componentDidMount() {
     axios.get('/api/myJobs')
     .then(response => {
+      console.log(response.data);
       this.setState({myJobs: response.data});
     })
   }
@@ -20,7 +21,7 @@ class MyJobs extends Component {
   render() {
     const myJobs = this.state.myJobs.map((job, i) => {
       return (
-      <div key={i}>
+      <div key={i} onClick={() => this.props.history.push(`/post/${job.id}`)} style={{cursor:'pointer'}}>
         <h3>
           {job.title}
         </h3>
